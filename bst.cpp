@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 10:20:05 by mkarim            #+#    #+#             */
-/*   Updated: 2023/01/08 21:41:47 by mkarim           ###   ########.fr       */
+/*   Updated: 2023/01/08 21:57:52 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class   BST {
         BST()
         {
             root = NULL;
-            i = 10;
         }
 
         Node*   newNode(const int& value)
@@ -74,22 +73,68 @@ class   BST {
 
             printTree(root->left, depth+1);
         }
+
+        void    print_inorder()
+        {
+            print_inorder(root);
+            std::cout << std::endl;
+        }
+        
+        void    print_inorder(Node* root)
+        {
+            if (root == NULL)
+                return ;
+            print_inorder(root->left);
+            std::cout << root->data << " ";
+            print_inorder(root->right);
+        }
+
+        void    print_preorder()
+        {
+            print_preorder(root);
+            std::cout << std::endl;
+        }
+        
+        void    print_preorder(Node* root)
+        {
+            if (root == NULL)
+                return ;
+            std::cout << root->data << " ";
+            print_preorder(root->left);
+            print_preorder(root->right);
+        }
+
+        void    print_postorder()
+        {
+            print_postorder(root);
+            std::cout << std::endl;
+        }
+
+        void    print_postorder(Node* root)
+        {
+            if (root == NULL)
+                return ;
+            print_postorder(root->left);
+            print_postorder(root->right);
+            std::cout << root->data << " ";
+        }
 };
 
 int main()
 {
     BST bst;
 
-    bst.insert(8);
-    bst.insert(3);
+    bst.insert(20);
     bst.insert(10);
-    bst.insert(1);
-    bst.insert(6);
-    bst.insert(14);
-    bst.insert(4);
-    bst.insert(7);
-    bst.insert(13);
+    bst.insert(40);
+    bst.insert(0);
+    bst.insert(15);
+    bst.insert(50);
+    bst.insert(30);
 
     bst.printTree();
+    bst.print_inorder();
+    bst.print_preorder();
+    bst.print_postorder();
     return 0;
 }
