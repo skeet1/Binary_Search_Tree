@@ -6,7 +6,7 @@
 /*   By: mkarim <mkarim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 10:20:05 by mkarim            #+#    #+#             */
-/*   Updated: 2023/01/09 11:57:26 by mkarim           ###   ########.fr       */
+/*   Updated: 2023/01/09 12:06:29 by mkarim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,22 @@ class   BST {
             }
             return (abs(root->right->height - root->left->height) <= 1);
         }
+        
+        bool found(const int& val)
+        {
+            return found(root, val);
+        }
+
+        bool found(Node* root, const int& val)
+        {
+            if (root == NULL)
+                return false;
+            if (root->data > val)
+                return found(root->left, val);
+            if (root->data < val)
+                return found(root->right, val);
+            return true;
+        }
 };
 
 int main()
@@ -170,7 +186,9 @@ int main()
     bst.insert(10000);
 
     bst.printTree();
+
     std::cout << (bst.balanced() == true ? "Yes, it's balanced" : "No, it's not") << std::endl;
+    std::cout << (bst.found(370) == true ? "Yes, we found it" : "No, it's not exist") << std::endl;
     // bst.print_inorder();
     // bst.print_preorder();
     // bst.print_postorder();
